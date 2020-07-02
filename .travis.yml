@@ -13,9 +13,9 @@ before_script:
 
 script:
         - docker --version
-        - docker built -t simple-node .
+        - docker build -t simple-node .
         - docker tag simple-node jcpince/simple-node:latest
 
-after_sucess:
+after_success:
         - echo "$DOCKER_PASSWORD" | docker login "$DOCKER_USERNAME" --password-stdin
         - docker push jcpince/simple-node
