@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+        - 13
+
+services:
+        - docker
+
+install:
+        - echo "nothing to install"
+
+before_script:
+        - echo "This is run before"
+
+script:
+        - docker --version
+        - docker built -t simple-node .
+        - docker tag simple-node jcpince/simple-node:latest
+
+after_sucess:
+        - echo "$DOCKER_PASSWORD" | docker login "$DOCKER_USERNAME" --password-stdin
+        - docker push jcpince/simple-node
