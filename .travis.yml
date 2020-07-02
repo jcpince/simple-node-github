@@ -17,5 +17,5 @@ script:
         - docker tag simple-node jcpince/simple-node:latest
 
 after_success:
-        - echo "$DOCKER_PASSWORD" | docker login "$DOCKER_USERNAME" --password-stdin
+        - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
         - docker push jcpince/simple-node
